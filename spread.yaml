@@ -1,0 +1,35 @@
+project: spread-demo
+
+backends:
+     google:
+        key: '$(HOST: echo "$SPREAD_GOOGLE_KEY")'
+        location: computeengine/us-east1-b
+        halt-timeout: 2h
+        systems:
+            - ubuntu-16.04:
+                workers: 8
+            - ubuntu-18.04:
+                workers: 8
+
+     lxd:
+        systems:
+            - ubuntu-16.04:
+            - ubuntu-18.04:
+            - ubuntu-20.04:
+
+path: /root/spread
+
+kill-timeout: 5m
+
+suites:
+    tests/:
+        summary: Some tests
+        prepare: |
+            echo "Prearing a test suite"
+        prepare-each: |
+            echo "Preparing a test case"
+        restore-each: |
+            echo "Restoring a test case"
+        restore: |
+            echo "Restoring a test suite"
+

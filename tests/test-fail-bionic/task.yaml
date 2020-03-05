@@ -1,0 +1,17 @@
+summary: Test which fails
+
+systems: [ubuntu-16.04, ubuntu-18.04]
+
+prepare: |
+    if [ "$SPREAD_SYSTEM" == ubuntu-18.04 ]; then
+        echo "fails" > test-output
+    else
+        echo "works" > test-output
+    fi
+ 
+execute: |
+   grep "works" test-output
+
+restore: |
+    rm test-output
+

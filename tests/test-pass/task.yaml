@@ -1,0 +1,13 @@
+summary: Test which works well
+
+systems: [ubuntu-18.04]
+
+prepare: |
+    echo "works" > test-output
+
+execute: |
+   grep "works" test-output
+
+restore: |
+    rm test-output
+
